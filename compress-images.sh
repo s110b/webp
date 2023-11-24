@@ -15,9 +15,9 @@ ls -al /images/origin
 
  
 
-
+squoosh-cli --webp  "$ORIGIN_DIR"  --output-dir "$COMPRESSED_DIR"
  
-
+ls -al  "$COMPRESSED_DIR"
 
 echo "Starting image compression process..."
 # 处理图片
