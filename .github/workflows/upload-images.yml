@@ -1,0 +1,25 @@
+name: Upload Compressed Images
+
+on:
+  push:
+    paths:
+      - 'images/origin/**'
+
+jobs:
+  compress-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Compress Images
+        run: docker run -v ${{ github.workspace }}/images:/images xiquwugou/compressed:v1.0.0
+
+      - name: Commit and Push Compressed Images
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Add compressed images
+          branch: ${{ github.ref }}
+          file_pattern: images/compressed/*
+          commit_user_name: xiquwugou
+          commit_user_email: xiqu.wugou@gmail.com
