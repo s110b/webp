@@ -16,7 +16,7 @@ jobs:
       - name: Compress Images
         run: 
         run: |
-          docker run -v ${{ github.workspace }}/compress-images.sh:/app/compress-images.sh -v  ${{ github.workspace }}/images/origin:/images/origin xiquwugou/compressed:v1.0.2
+          docker run -v ${{ github.workspace }}/compress-images.sh:/app/compress-images.sh -v  ${{ github.workspace }}/images:/images xiquwugou/compressed:v1.0.2
           echo "Listing compressed images in /images/compressed directory:"
           ls -alh /images/compressed
 
