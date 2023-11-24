@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: xiquwugou/compressed:v1.0.0
+          tags: xiquwugou/compressed:v1.0.1
 
       - name: Logout from Docker Hub
         run: docker logout
