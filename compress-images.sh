@@ -5,7 +5,7 @@ ORIGIN_DIR="/images/origin"
 COMPRESSED_DIR="/images/compressed"
 
 
-mkdir -p /images/compressed
+
 
 
 
