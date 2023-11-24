@@ -13,4 +13,4 @@ ls -al /images/origin
 
 
 
-find "$ORIGIN_DIR" -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' \) -exec sh -c 'echo "Processing $1"; squoosh-cli --webp $1 --output-dir "$2"' _ {} "$COMPRESSED_DIR" \;
+find "$ORIGIN_DIR" -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' \) -exec sh -c 'echo "Processing file: $1"; squoosh-cli --webp "$1" --output-dir "$2"' _ {} "$COMPRESSED_DIR" \;
