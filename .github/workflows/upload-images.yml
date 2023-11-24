@@ -17,7 +17,14 @@ jobs:
         run: |
           docker run -v ${{ github.workspace }}/compress-images.sh:/app/compress-images.sh -v  ${{ github.workspace }}/images:/images xiquwugou/compressed:v1.0.2
           echo "Listing compressed images in /images/compressed directory:"
-          ls -alh /images/compressed
+        
+
+
+     - name: Install tree and Display Directory Structure
+       run: |
+        sudo apt-get update
+        sudo apt-get install -y tree
+        tree -L 3
 
 
       - name: Commit and Push Compressed Images
