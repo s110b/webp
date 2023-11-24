@@ -15,7 +15,7 @@ ls -al /images/origin
 
  
 
-squoosh-cli --webp  "$ORIGIN_DIR"  --output-dir "$COMPRESSED_DIR"
+squoosh-cli --webp  "$ORIGIN_DIR"/  --output-dir "$COMPRESSED_DIR"
  
 ls -al  "$COMPRESSED_DIR"
 
