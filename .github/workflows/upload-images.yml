@@ -3,7 +3,7 @@ name: Upload Compressed Images
 on:
   push:
     paths:
-      - 'images/origin/**'
+      - 'images/**'
 
 jobs:
   compress-and-upload:
