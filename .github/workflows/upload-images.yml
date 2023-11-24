@@ -2,13 +2,21 @@ name: Upload Compressed Images
 
 on:
   push:
-    paths:
-      - 'images/**'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   compress-and-upload:
     runs-on: ubuntu-latest
+    permissions:
+    # Give the default GITHUB_TOKEN write permission to commit and push the
+    # added or changed files to the repository.
+     contents: write
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -33,3 +41,4 @@ jobs:
           file_pattern: images/compressed/*
           commit_user_name: xiquwugou
           commit_user_email: xiqu.wugou@gmail.com
+          token: ${{ secrets.GITHUB_TOKEN }}
