@@ -14,4 +14,5 @@ COPY compress-images.sh /app/compress-images.sh
 RUN chmod +x /app/compress-images.sh
 
 # 设置默认命令
-CMD ["/app/compress-images.sh"]
+CMD ["/bin/bash", "/app/compress-images.sh"]
+
