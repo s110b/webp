@@ -10,4 +10,7 @@ mkdir -p /images/compressed
 ls -al /images/origin
 
 
-find /images/origin -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' \) -print0 | xargs -0 -P 4 -I {} squoosh-cli --webp '{}' --output-dir /images/compressed
+
+
+
+find "$ORIGIN_DIR" -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' \) -print0 | xargs -0 -P 4 -I {} echo "Processing {}" && squoosh-cli --webp '{}' --output-dir "$COMPRESSED_DIR"
