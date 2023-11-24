@@ -21,19 +21,17 @@ ls -al /images/origin
 
 echo "Starting image compression process..."
 # 处理图片
-for ext in "$ORIGIN_DIR"/*.{jpg,jpeg,png}; do
-  for file in "$ORIGIN_DIR"/*.$ext; do
-    if [ -f "$file" ]; then
-      echo "Compressing $file..."
-      squoosh-cli --webp "$file" --output-dir "$COMPRESSED_DIR" &
-      if (( $(jobs -r | wc -l) >= 4 )); then
-        echo "Waiting for a job to finish..."
-        wait -n
-      fi
-    else
-      echo "No file found for $file"
+for file in "$ORIGIN_DIR"/*.{jpg,JPG,jpeg,JPEG,png,PNG}; do
+  if [ -f "$file" ]; then
+    echo "Compressing $file..."
+    squoosh-cli --webp "$file" --output-dir "$COMPRESSED_DIR" &
+    if (( $(jobs -r | wc -l) >= 4 )); then
+      echo "Waiting for a job to finish..."
+      wait -n
     fi
-  done
+  else
+    echo "No file found for $file"
+  fi
 done
 
 echo "Waiting for all jobs to complete..."
