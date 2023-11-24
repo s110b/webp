@@ -13,6 +13,7 @@ ls -al /images/origin
 
 
 
+ 
 
 
  
@@ -20,7 +21,7 @@ ls -al /images/origin
 
 echo "Starting image compression process..."
 # 处理图片
-for ext in jpg JPG jpeg JPEG png PNG; do
+for ext in "$ORIGIN_DIR"/*.{jpg,jpeg,png}; do
   for file in "$ORIGIN_DIR"/*.$ext; do
     if [ -f "$file" ]; then
       echo "Compressing $file..."
