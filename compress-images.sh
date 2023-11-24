@@ -15,4 +15,4 @@ cd "$ORIGIN_DIR"/
 squoosh-cli --webp auto ./ -d ../compressed
 
 
-ls ../compressed
+
