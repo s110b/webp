@@ -14,7 +14,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Compress Images
-        run: 
         run: |
           docker run -v ${{ github.workspace }}/compress-images.sh:/app/compress-images.sh -v  ${{ github.workspace }}/images:/images xiquwugou/compressed:v1.0.2
           echo "Listing compressed images in /images/compressed directory:"
