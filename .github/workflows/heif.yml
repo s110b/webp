@@ -25,13 +25,16 @@ jobs:
         run: |
           for file in ${{ github.workspace }}/images/*.heif
           do
-            # 提取文件名（不含扩展名）
+            # 提取文件的基本名称和扩展名
             filename=$(basename -- "$file")
-            filename="${filename%.*}"
+
+            # 构建容器内部的完整文件路径
+            container_file_path="/usr/app/out/images/$filename"
 
             # 执行 Docker 命令进行转换
-            docker run -v ${{ github.workspace }}:/usr/app/out --rm nevermendel/heif-convert "/usr/app/out/images/$file" -f webp -o "/usr/app/out/images/$filename.webp"
+            docker run -v ${{ github.workspace }}:/usr/app/out --rm nevermendel/heif-convert "$container_file_path" -f webp -o "${container_file_path%.*}.webp"
           done
+
 
 
       - name: Install tree and Display Directory Structure
