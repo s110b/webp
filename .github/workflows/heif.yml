@@ -33,7 +33,8 @@ jobs:
 
             # 执行 Docker 命令进行转换
             docker run -v ${{ github.workspace }}:/usr/app/out --rm nevermendel/heif-convert "$container_file_path" -f webp -o "${container_file_path%.*}"
-            mv "${container_file_path%.*}.webp" ${{ github.workspace }}/images/compressed/
+            mv "${{ github.workspace }}/images/${filename%.*}.webp" ${{ github.workspace }}/images/compressed/
+
           done
 
 
