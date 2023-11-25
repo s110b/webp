@@ -1,0 +1,49 @@
+name: heif
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  compress-and-upload:
+    runs-on: ubuntu-latest
+    permissions:
+    # Give the default GITHUB_TOKEN write permission to commit and push the
+    # added or changed files to the repository.
+     contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Convert HEIF files to WebP
+        run: |
+          for file in ${{ github.workspace }}/images/*.heif
+          do
+            # 提取文件名（不含扩展名）
+            filename=$(basename -- "$file")
+            filename="${filename%.*}"
+
+            # 执行 Docker 命令进行转换
+            docker run -v ${{ github.workspace }}:/usr/app/out --rm nevermendel/heif-convert "/usr/app/out/images/$file" -f webp -o "/usr/app/out/images/$filename.webp"
+          done
+
+
+      - name: Install tree and Display Directory Structure
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tree
+          tree -L 3
+
+
+      - name: Commit and Push Compressed Images
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply php-cs-fixer changes
+          push_options: --force
+          token: ${{ secrets.GITHUB_TOKEN }}
