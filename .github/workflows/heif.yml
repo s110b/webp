@@ -23,7 +23,7 @@ jobs:
 
       - name: Convert HEIF files to WebP
         run: |
-          for file in ${{ github.workspace }}/images/*.HEIC
+          for file in ${{ github.workspace }}/images/heic/*.HEIC
           do
             # 提取文件的基本名称和扩展名
             filename=$(basename -- "$file")
